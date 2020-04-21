@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Learn tab l</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="fragment_one">FragmentOne</string>
+    <string name="fragment_two">Fragment two</string>
+    <string name="fragment_three">Fragment three</string>
+    <string name="name_task">Name task</string>
+    <string name="name_task_important">Name task important</string>
+    <string name="task_name_done">Task name Done</string>
+</resources>
