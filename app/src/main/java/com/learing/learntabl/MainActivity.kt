@@ -1,13 +1,17 @@
 package com.learing.learntabl
 
+import android.annotation.SuppressLint
 import android.app.Dialog
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.Window
-import android.widget.*
-import androidx.annotation.FloatRange
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
 import com.learing.learntabl.home.FragmentOne
@@ -37,6 +41,7 @@ class MainActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
 
     }
+    @SuppressLint("ResourceType")
     private fun dialogAdd(){
         val dialog= Dialog(this)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -54,15 +59,22 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this@MainActivity, "Vui long nhap lai", Toast.LENGTH_SHORT).show()
             }
             else{
-
                 val bundle = Bundle()
-                val fragmentOne = FragmentOne()
-                bundle.putString("content",content)
+                bundle.putString("content", content)
+                val fragmentOne =  FragmentOne()
                 fragmentOne.arguments = bundle
+
+
+                var fragment: Fragment? = supportFragmentManager.findFragmentById(R.layout.fragment_one)
+                val fragmentTransient: FragmentTransaction = supportFragmentManager.beginTransaction()
+                fragmentTransient.detach(fragment!!)
+                fragmentTransient.attach(fragment)
+                fragmentTransient.commit()
+
                 Toast.makeText(this@MainActivity, "OK", Toast.LENGTH_SHORT).show()
+
                 dialog.dismiss()
             }
-
         }
         dialog.show()
     }
