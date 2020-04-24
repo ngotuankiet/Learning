@@ -62,15 +62,9 @@ class MainActivity : AppCompatActivity() {
                 val bundle = Bundle()
                 bundle.putString("content", content)
                 val fragmentOne =  FragmentOne()
+
                 fragmentOne.arguments = bundle
-
-
-                var fragment: Fragment? = supportFragmentManager.findFragmentById(R.layout.fragment_one)
-                val fragmentTransient: FragmentTransaction = supportFragmentManager.beginTransaction()
-                fragmentTransient.detach(fragment!!)
-                fragmentTransient.attach(fragment)
-                fragmentTransient.commit()
-
+                fragmentOne.onRefresh()
                 Toast.makeText(this@MainActivity, "OK", Toast.LENGTH_SHORT).show()
 
                 dialog.dismiss()
@@ -78,4 +72,7 @@ class MainActivity : AppCompatActivity() {
         }
         dialog.show()
     }
+}
+interface FragmentRefreshListener{
+    fun onRefresh()
 }
